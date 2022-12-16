@@ -23,6 +23,9 @@ import (
 func init() {
 	settings.Setup()
 	logging.Setup()
+}
+
+func prepareComponents() {
 	data.Setup()
 	cache.Setup()
 	cron.Setup()
@@ -45,6 +48,7 @@ func init() {
 // @accept  json
 // @produce json
 func main() {
+	prepareComponents()
 	runMode := settings.Config.Server.RunMode
 	gin.SetMode(runMode)
 	r := router.InitRouter()
